@@ -1,31 +1,33 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styless.css">
 </head>
 <body>
-    <h1>Post Creating...</h1>
+    <button type="submit" style="float: right; margin-top: 1rem;" id="logout">Logout</button>
+   <div class="abc"> <h1 class="enterPostHeading">Enter Your Post...</h1>
 <form action="" id="createPost">
-<label for="PostTitle">Post Title : </label>
-<input type="text" id="PostTitle"><br><br>
-<label for="PostText">Post Text : </label>
-<input type="text" id="PostText">
-<button type="submit">Post</button>
+<label for="PostTitle">Post Title : </label><br>
+<input type="text" id="PostTitle" required maxlength="20" placeholder="hello everyone"><br><br>
+<label for="PostText">Post Text : </label><br>
+<input type="text" id="PostText" required placeholder="hello everyone" maxlength="200">
+<button type="submit" id="postButton">Post</button>
 
 </form>
-<h1>Result... </h1>
+<!-- <h1>Result... </h1> -->
 <div id="result"></div><br><br>
-<h1>Posts... </h1>
+<!-- <h1>Posts... </h1> -->
 
 <div id="posts"></div>
+</div>
 
-
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.js"></script>
     <script type="module" src="./app.mjs"></script>
 </body>
 </html>
 
+ 

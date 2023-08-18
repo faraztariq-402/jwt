@@ -22,19 +22,20 @@ app.use(express.static(path.join(__dirname, "public")))
 app.use((req,res,next)=>{
     console.log("cookies:", req.cookies)
     const token = req.cookies.token;
-   try{
-    const decoded = jwt.verify(token, process.env.SECRET)
-    console.log("decoded:" ,decoded)
-    req.body.decoded = {
-        firstName: decoded.firstName,
-        lastName: decoded.lastName,
-        email: decoded.email,
-        isAdmin: decoded.isAdmin,
+    try {
+        const decoded = jwt.verify(token, process.env.SECRET);
+        console.log("decoded: ", decoded);
 
+        req.body.decoded = {
+            firstName: decoded.firstName,
+            lastName: decoded.lastName,
+            email: decoded.email,
+            isAdmin: decoded.isAdmin,
+        };
+
+        next();
 
     }
-    next()
-   }
     catch(e){
         res.status(401).send({ message: "invalid token" })
     }

@@ -22,7 +22,10 @@ router.post('/login', async (req, res) => {
         const result = await usersCollection.findOne({email: req.body.email});   
         console.log("result:", result)  
         if(!result){
-           res.send(`user not exists`) 
+            res.status(401).send({
+                message: "Email or Password Incorrect"
+            })
+           
            return
           }
           
@@ -45,12 +48,13 @@ router.post('/login', async (req, res) => {
                     message: "Login Successful"})
                     return
             }else{
+                // 
                 res.status(401).send({
                     message: "Email or Password Incorrect"
                 })
-
+ return
             }
-            return
+           
           }
        
     } catch (e) {
@@ -68,19 +72,25 @@ router.post('/signup', async (req, res) => {
         || !req.body?.lastName
         || !req.body?.email
         || !req.body?.password
+        || !req.body?.confirmPassword
     ) {
         res.status(403).send(`
     required parameters missing. Example request body:
     {firstName: firstName,
     lastName: lastName  
     email faraz123@gmail.com
-  password: faraz123}`)
+  password: faraz123,
+  confirmPassword: faraz123}`)
         return
     }
     req.body.email = req.body.email.toLowerCase()
     try {
         const result = await usersCollection.findOne({email: req.body.email});   
         console.log("result:", result) 
+        if(req.body.password !== req.body.confirmPassword){
+            res.send("password not same")
+            return
+        }
         let hashPassword =  await stringToHash(req.body.password) 
         if(!result){
             const insertData = await usersCollection.insertOne({
@@ -94,6 +104,7 @@ router.post('/signup', async (req, res) => {
                 
               }); 
               res.send("Signup Successful")  
+              return
           }else{
             res.send(`user already exists`)
           }
@@ -103,4 +114,13 @@ router.post('/signup', async (req, res) => {
         res.status(500).send("An error occurred while inserting user data.");
     }
 })
+
+router.post("/logout", (req, res, next) => {
+    res.cookie('token', "", {
+        httpOnly: true,
+        secure: true,
+    });
+    res.send({ message: 'Logout successful' });
+});
+
 export default router

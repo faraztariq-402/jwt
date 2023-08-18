@@ -1,0 +1,85 @@
+.post-card{
+    border: 2px solid black;
+    margin: 0.5rem;
+    padding: 1rem;
+    color: rgb(128, 199, 106);
+    background-color: rgb(43, 33, 33);
+    min-height: 9rem;
+    margin: auto;
+    width: 30rem;
+    margin-top: 1rem;
+    border-radius: 0.4rem;
+    box-shadow: 2px 2px 8px black;
+    word-wrap: break-word;
+}
+.editButton,.deleteButton{
+    width: 5rem;
+    height: 1.7rem;
+    background-color: white;
+    color: rgb(7, 7, 7);
+    margin: 0.3rem;
+    border: 4px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+.abc{
+    margin-left: 1rem;
+}
+.parent{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#posts{
+    margin-bottom: 5rem;
+    
+} 
+#result{
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.enterPostHeading{
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+label{
+   
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+.myPara{
+    margin-top: 0.5rem;
+}
+#postButton{
+    height: 1.7rem;
+    width: 5rem;
+    border-radius: 4px;
+    background-color: black;
+    color: white;
+    margin-left: 0.4rem;
+    font-weight: bold;
+}
+#logout{
+    height: 1.7rem;
+    width: 5rem;
+    border-radius: 4px;
+    background-color: black;
+    font-weight: bold;
+    color: white;
+    margin-right: 3rem;
+}
+input{
+    height: 1.8rem;
+    border: 1px solid whitesmoke;
+    border-radius: 4px;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: blanchedalmond;
+}
