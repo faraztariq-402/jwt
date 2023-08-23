@@ -53,30 +53,39 @@ passwordDisplay.addEventListener("click", () => {
   myPassword.type = "password";
 });
         let userLogin = document.querySelector("#userLogin")
-userLogin.addEventListener("submit",async (e)=>{
-    e.preventDefault()
-let Email = document.querySelector("#email").value
-let Password = document.querySelector("#password").value
-    try{
-   const res = await axios.post(`/api/v1/login`, {
-    email: Email,
-    password: Password
-   })
-   if(res.status === 200){
-       window.location.href = "./index.html"
+        userLogin.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  let Email = document.querySelector("#email").value;
+  let Password = document.querySelector("#password").value;
+  
+  try {
+    const res = await axios.post(`/api/v1/login`, {
+      email: Email,
+      password: Password,
+    });
+
+    if (res.status === 200) {
+      // User login successful
+      Swal.fire({
+        icon: 'success',
+        title: 'Login Successful',
+        showConfirmButton: false,
+        timer: 1500 // Display success message for 1.5 seconds
+      }).then(() => {
+        window.location.href = "./index.html";
+      });
     }
-}catch(e){
-    console.log(e)
-     alert("Email or password incorrect")
-     e.res.status = 401
-        console.log("response:", e.res.status)
-}
-
+  } catch (e) {
+    console.log(e);
+    // Display an error popup
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'Email or password incorrect',
+    });
+  }
+}); 
     
-
-
-
-})
     </script>
 </body>
 </html>

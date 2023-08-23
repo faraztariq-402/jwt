@@ -5,6 +5,7 @@ let createPost = document.querySelector("#createPost")
 let result     = document.querySelector("#result")
 let posts      = document.querySelector("#posts")
 let logout      = document.querySelector("#logout")
+
 logout.addEventListener("click", () => {
   axios.post(`/api/v1/logout`)
   .then(function (response) {
@@ -16,7 +17,9 @@ logout.addEventListener("click", () => {
       showConfirmButton: false,
       timer: 1500 // Display success message for 1.5 seconds
     });
-    window.location.href = "./login.html";
+    setTimeout(() => {
+      window.location.href = "./login.html";
+    }, 1500);
   })
   .catch(function (error) {
     console.log(error);
@@ -47,20 +50,39 @@ createPost.addEventListener("submit", (e)=>{
         console.log(error);
       });
 })
-let getAllPosts = () => {
+let getAllPosts = () => { 
+
   axios.get('/api/v1/posts', {
     withCredentials: true
   })
+
+ 
   .then(function (response) {
     console.log(response); // Check the response data structure in the console
-
-    // Clear the existing posts before appending new ones
+   // Clear the existing posts before appending new ones
+  setTimeout(()=>{
+    result.innerHTML = ""
+  },2000)
+   
     posts.innerHTML = "";
-
+    if (response.data.length === 0) {
+      // No posts available, display "No Posts Yet" message
+      let noPostsCard = document.createElement("div");
+      noPostsCard.classList.add("post-card");
+      let noPostsMessage = document.createElement("p");
+      noPostsMessage.textContent = "No Posts Yet";
+      noPostsMessage.style.fontSize = "1.5rem"
+      noPostsCard.appendChild(noPostsMessage);
+      posts.appendChild(noPostsCard);
+    }
     response.data.forEach((myPosts) => {
       let postCard = document.createElement("div");
       postCard.classList.add("post-card");
       posts.appendChild(postCard);
+      let userName = document.createElement("div")
+      userName.textContent = myPosts.from
+      postCard.appendChild(userName)
+      
 let headingAndButton = document.createElement("div")
 headingAndButton.classList.add("parent")
 postCard.appendChild(headingAndButton)

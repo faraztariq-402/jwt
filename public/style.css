@@ -26,7 +26,11 @@ body{
     padding-right: 2.3rem;
     border-radius: 6px;
 }
-
+#passwordNotMatch{
+    color: red;
+    margin-top: 0.3rem;
+    text-align: center;
+}
 .or span{
     margin-left: 0.3rem;
     margin-right: 0.3rem;
@@ -40,6 +44,11 @@ input{
     border-radius: 6px;
     border: 1px solid rgb(194, 177, 177);
     padding: 0.2rem;
+}
+.swal2-confirm{
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
 }
 .signupPassword{
     display: flex;
